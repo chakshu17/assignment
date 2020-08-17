@@ -1,0 +1,144 @@
+<div fxLayout="column" fxLayoutAlign="center center">
+  <h1>Submit your KYC</h1>
+
+  <form
+    fxLayout="column"
+    fxLayoutAlign="center center"
+    style="padding: 15px;"
+    (ngSubmit)="onclick(f)"
+    #f="ngForm"
+  >
+
+    <mat-form-field>
+      <mat-label>Adhaar no.</mat-label>
+      <input
+        class="input"
+        matInput
+        required
+        type="number"
+        placeholder="XXXX-XXXX-XXXX"
+        ngModel
+        value=""
+        name="aadharNumber"
+      />
+    </mat-form-field>
+
+
+    <mat-form-field>
+      <mat-label>Pan No.</mat-label>
+      <input
+        class="input"
+        matInput
+        required
+        type="text"
+        placeholder="Enter the PAN"
+        ngModel
+        value=""
+        name="panNumber"
+      />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Company Pan No.</mat-label>
+      <input
+        class="input"
+        matInput
+        required
+        type="text"
+        placeholder="Enter the PAN"
+        ngModel
+        value=""
+        name="companyPanNumber"
+      />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Company Name</mat-label>
+      <input
+        class="input"
+        matInput
+        required
+        type="text"
+        placeholder="Enter the Company Name"
+        ngModel
+        value=""
+        name="companyName"
+      />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Incorporation Number</mat-label>
+      <input
+        class="input"
+        matInput
+        required
+        type="number"
+        placeholder="Enter the Incorporation number"
+        ngModel
+        value=""
+        name="incorporationNumber"
+      />
+    </mat-form-field>
+
+
+    <div fxLayout fxLayoutGap="20px">
+      <mat-form-field style="width: 50%;">
+        <mat-label>Incorporation Place</mat-label>
+        <input
+          class="input"
+          matInput
+          required
+          type="text"
+          placeholder="Enter the Incorporation Place"
+          ngModel
+          value=""
+          name="incorporationPlace"
+        />
+      </mat-form-field>
+
+      <mat-form-field style="width: 50%;">
+        <mat-label>Incorporation Date</mat-label>
+        <input
+          class="input"
+          matInput
+          required
+          type="date"
+          placeholder="Enter the Incorporation Date"
+          ngModel
+          value=""
+          name="incorporationDate"
+        />
+      </mat-form-field>
+    </div>
+
+    <mat-form-field>
+      <mat-label> CIBIL Score</mat-label>
+      <input
+        class="input"
+        matInput
+        required
+        type="number"
+        ngModel
+        value=""
+        name="cibil"
+        placeholder="Enter CIBIL score"
+      />
+    </mat-form-field>
+
+    <br />
+
+
+
+    <mat-card-actions>
+      <button
+        mat-raised-button
+        color="accent"
+        type="submit"
+        [disabled]="f.invalid"
+        style="width: 320px;"
+      >
+        Submit
+      </button>
+    </mat-card-actions>
+  </form>
+</div>
