@@ -6,6 +6,10 @@ import { FormsModule } from '@angular/forms';
 
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatCardModule} from '@angular/material/card';
+import {MatInputModule} from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { HttpClientModule} from  '@angular/common/http';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -24,7 +28,10 @@ import { VerifyComponent } from './verify/verify.component';
     FormsModule,
     FlexLayoutModule,
     MatFormFieldModule,
-    MatCardModule
+    MatCardModule,
+    MatInputModule,
+    MatButtonModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

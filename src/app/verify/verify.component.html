@@ -1,5 +1,5 @@
-<div fxLayout="column" fxLayoutAlign="center center">
-  <h1>Submit your KYC</h1>
+<div fxLayout="column" fxLayoutAlign="center center" style="margin-top: 50px;">
+  <h1>Loan verification</h1>
 
   <form
     fxLayout="column"
@@ -7,138 +7,146 @@
     style="padding: 15px;"
     (ngSubmit)="onclick(f)"
     #f="ngForm"
+    *ngIf="showform===true"
   >
-
-    <mat-form-field>
-      <mat-label>Adhaar no.</mat-label>
+    <mat-form-field appearance="outline">
+      <mat-label>Full Name</mat-label>
       <input
         class="input"
         matInput
         required
-        type="number"
-        placeholder="XXXX-XXXX-XXXX"
+        type="text"
+        maxlength="140"
+        placeholder="Enter the Full Name"
         ngModel
-        value=""
-        name="aadharNumber"
+        name="fullname"
       />
     </mat-form-field>
-
-
-    <mat-form-field>
+    <mat-form-field appearance="outline">
       <mat-label>Pan No.</mat-label>
       <input
         class="input"
         matInput
         required
         type="text"
+        maxlength="10"
+        pattern="[A-Z]{5}[0-9]{4}[A-Z]{1}"
         placeholder="Enter the PAN"
         ngModel
-        value=""
         name="panNumber"
+        #panNumber="ngModel"
       />
     </mat-form-field>
-
-    <mat-form-field>
-      <mat-label>Company Pan No.</mat-label>
-      <input
-        class="input"
-        matInput
-        required
-        type="text"
-        placeholder="Enter the PAN"
-        ngModel
-        value=""
-        name="companyPanNumber"
-      />
-    </mat-form-field>
-
-    <mat-form-field>
-      <mat-label>Company Name</mat-label>
-      <input
-        class="input"
-        matInput
-        required
-        type="text"
-        placeholder="Enter the Company Name"
-        ngModel
-        value=""
-        name="companyName"
-      />
-    </mat-form-field>
-
-    <mat-form-field>
-      <mat-label>Incorporation Number</mat-label>
-      <input
-        class="input"
-        matInput
-        required
-        type="number"
-        placeholder="Enter the Incorporation number"
-        ngModel
-        value=""
-        name="incorporationNumber"
-      />
-    </mat-form-field>
-
-
-    <div fxLayout fxLayoutGap="20px">
-      <mat-form-field style="width: 50%;">
-        <mat-label>Incorporation Place</mat-label>
-        <input
-          class="input"
-          matInput
-          required
-          type="text"
-          placeholder="Enter the Incorporation Place"
-          ngModel
-          value=""
-          name="incorporationPlace"
-        />
-      </mat-form-field>
-
-      <mat-form-field style="width: 50%;">
-        <mat-label>Incorporation Date</mat-label>
-        <input
-          class="input"
-          matInput
-          required
-          type="date"
-          placeholder="Enter the Incorporation Date"
-          ngModel
-          value=""
-          name="incorporationDate"
-        />
-      </mat-form-field>
+    <div *ngIf="panNumber.touched && panNumber.invalid" class="alert-danger">
+      <p *ngIf="panNumber.errors.pattern">Pan no. is Pattern must be XXXX1234X  .</p>
     </div>
 
-    <mat-form-field>
-      <mat-label> CIBIL Score</mat-label>
+    <mat-form-field appearance="outline">
+      <mat-label>City</mat-label>
       <input
         class="input"
         matInput
         required
-        type="number"
+        type="text"
+        placeholder="Enter the City"
         ngModel
-        value=""
-        name="cibil"
-        placeholder="Enter CIBIL score"
+        name="city"
       />
     </mat-form-field>
 
+    <mat-form-field appearance="outline">
+      <mat-label>Email</mat-label>
+      <input
+        class="input"
+        matInput
+        required
+        type="email"
+        maxlength="255"
+        placeholder="Enter the Email Id"
+        ngModel
+        name="email"
+      />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label> Mobile no:</mat-label>
+      <span matPrefix>+91 - &nbsp;</span>
+      <input
+        class="input"
+        matInput
+        required
+        type="tel"
+        placeholder="Enter Mobile no."
+        ngModel
+        name="mobile"
+        maxlength="10"
+        minlength="10"
+        #number="ngModel"
+      />
+    </mat-form-field>
+
+    *click Submit to get option
+    <br>
     <br />
-
-
-
-    <mat-card-actions>
+    <mat-card-actions fxLayoutGap="50px">
       <button
         mat-raised-button
-        color="accent"
+        color="primary"
         type="submit"
-        [disabled]="f.invalid"
-        style="width: 320px;"
+
+        style="width: 100px;"
       >
         Submit
       </button>
     </mat-card-actions>
   </form>
+  <form (ngSubmit)="otpsubmit(f)" #f="ngForm" *ngIf="otp===true">
+
+      <mat-form-field appearance="outline">
+        <mat-label>OTP</mat-label>
+        <input
+          class="input"
+          matInput
+          required
+          type="tel"
+          #otp
+          maxlength="4"
+          placeholder="Enter OTP"
+          ngModel
+          name="otp"
+        />
+        <mat-hint align="end">{{ otp.value.length }} / 4</mat-hint>
+      </mat-form-field>
+      <br>
+      <div>
+        <button  mat-raised-button color="accent" [disabled]="resendotp===false" (click)="resend()">
+          Resend OTP
+        </button>
+      </div>
+      <br>
+      <mat-card-actions>
+        <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        style="width: 100px;"
+      >
+        Submit OTP
+      </button>
+      </mat-card-actions>
+
+
+  </form>
+
+
+  <div *ngIf="showmessage===true">
+    <h1>
+      Thank you for verification {{fullname}}
+    </h1>
+  </div>
+
+  <div *ngIf="showerror===true">
+    <h2>Press retry button after an hour.</h2>
+  </div>
 </div>
+
