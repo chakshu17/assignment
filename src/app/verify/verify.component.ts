@@ -66,7 +66,7 @@ export class VerifyComponent implements OnInit,DoCheck {
         console.log(re);
         setTimeout(() => {
           this.resendotp=true;
-        },2000 );
+        },180000 );
         }
       });
   }
@@ -76,15 +76,19 @@ export class VerifyComponent implements OnInit,DoCheck {
       otp: f.value.otp,
     };
     this.http
-      .post('http://lab.thinkoverit.com/api/verifyOTP.php', data)
+      .post<{status:string}>('http://lab.thinkoverit.com/api/verifyOTP.php', data)
       .subscribe((re) => {
-
+        if(re.status==='Missing Params'){
+          console.log("Sorry");
+        }
+        else{
         this.mobile_no = null;
         this.otp = false;
         this.showmessage=true;
         console.log(re);
         this.showerror=false;
         this.submitotp=true;
+        }
       });
   }
   resend(){
@@ -92,6 +96,6 @@ export class VerifyComponent implements OnInit,DoCheck {
     this.otpcount=this.otpcount+1;
     setTimeout(() => {
       this.resendotp=true;
-    }, 2000);
+    }, 3600000);
   }
 }
