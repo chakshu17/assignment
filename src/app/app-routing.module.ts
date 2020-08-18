@@ -5,6 +5,7 @@ import { VerifyComponent } from './verify/verify.component';
 
 const routes: Routes = [
   {path:'verify', component: VerifyComponent},
+  {path:'', component: VerifyComponent},
 ];
 
 @NgModule({
