@@ -1,13 +1,13 @@
-<div fxLayout="column" fxLayoutAlign="center center" style="margin-top: 50px;">
+<div fxLayout="column" fxLayoutAlign="center center" style="margin-top: 50px">
   <h1>Loan verification</h1>
 
   <form
     fxLayout="column"
     fxLayoutAlign="center center"
-    style="padding: 15px;"
+    style="padding: 15px"
     (ngSubmit)="onclick(f)"
     #f="ngForm"
-    *ngIf="showform===true"
+    *ngIf="showform === true"
   >
     <mat-form-field appearance="outline">
       <mat-label>Full Name</mat-label>
@@ -38,7 +38,9 @@
       />
     </mat-form-field>
     <div *ngIf="panNumber.touched && panNumber.invalid" class="alert-danger">
-      <p *ngIf="panNumber.errors.pattern">Pan no. is Pattern must be XXXX1234X  .</p>
+      <p *ngIf="panNumber.errors.pattern">
+        Pan no. is Pattern must be XXXX1234X .
+      </p>
     </div>
 
     <mat-form-field appearance="outline">
@@ -86,67 +88,64 @@
     </mat-form-field>
 
     *click Submit to get option
-    <br>
+    <br />
     <br />
     <mat-card-actions fxLayoutGap="50px">
       <button
         mat-raised-button
         color="primary"
         type="submit"
-
-        style="width: 100px;"
+        style="width: 100px"
       >
         Submit
       </button>
     </mat-card-actions>
   </form>
-  <form (ngSubmit)="otpsubmit(f)" #f="ngForm" *ngIf="otp===true">
-
-      <mat-form-field appearance="outline">
-        <mat-label>OTP</mat-label>
-        <input
-          class="input"
-          matInput
-          required
-          type="tel"
-          #otp
-          maxlength="4"
-          placeholder="Enter OTP"
-          ngModel
-          name="otp"
-        />
-        <mat-hint align="end">{{ otp.value.length }} / 4</mat-hint>
-      </mat-form-field>
-      <br>
-      <div>
-        <button  mat-raised-button color="accent" [disabled]="resendotp===false" (click)="resend()">
-          Resend OTP
-        </button>
-      </div>
-      <br>
-      <mat-card-actions>
-        <button
+  <form (ngSubmit)="otpsubmit(f)" #f="ngForm" *ngIf="otp === true">
+    <mat-form-field appearance="outline">
+      <mat-label>OTP</mat-label>
+      <input
+        class="input"
+        matInput
+        required
+        type="tel"
+        #otp
+        maxlength="4"
+        placeholder="Enter OTP"
+        ngModel
+        name="otp"
+      />
+      <mat-hint align="end">{{ otp.value.length }} / 4</mat-hint>
+    </mat-form-field>
+    <br />
+    <div>
+      <button
+        mat-raised-button
+        color="accent"
+        [disabled]="resendotp === false"
+        (click)="resend()"
+      >
+        Resend OTP
+      </button>
+    </div>
+    <br />
+    <mat-card-actions>
+      <button
         mat-raised-button
         color="primary"
         type="submit"
-        style="width: 100px;"
+        style="width: 100px"
       >
         Submit OTP
       </button>
-      </mat-card-actions>
-
-
+    </mat-card-actions>
   </form>
 
-
-  <div *ngIf="showmessage===true">
-    <h1>
-      Thank you for verification {{fullname}}
-    </h1>
+  <div *ngIf="showmessage === true">
+    <h1>Thank you for verification {{ fullname }}</h1>
   </div>
 
-  <div *ngIf="showerror===true">
+  <div *ngIf="showerror === true">
     <h2>Press retry button after an hour.</h2>
   </div>
 </div>
-
