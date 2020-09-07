@@ -38,6 +38,7 @@ export class VerifyComponent implements OnInit, DoCheck {
 
   ngOnInit(): void {}
 
+
   onclick(f: NgForm) {
     const data = {
       panNumber: f.value.panNumber,
@@ -67,6 +68,8 @@ export class VerifyComponent implements OnInit, DoCheck {
         }
       });
   }
+
+
   otpsubmit(f: NgForm) {
     const data = {
       mobile: this.mobile_no,
